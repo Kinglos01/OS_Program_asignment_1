@@ -7,7 +7,7 @@ void userMemoryAllocation(double mem_arr[],double proc_arr[],double mem_pgs_arr[
     std::srand(std::time(0));
     double randomNumber = 0;
     int processID = 0;
-    double extraMem = 0;
+    double ProcessAddress = 2000;
 
     for(int i = 0; i <= 99; i++) {
         randomNumber = rand() % 30 + 1;
@@ -16,12 +16,13 @@ void userMemoryAllocation(double mem_arr[],double proc_arr[],double mem_pgs_arr[
         proc_arr[i] = randomNumber * 80;
         mem_pgs_arr[i] = ceil(proc_arr[i] / 160);
         pgs_to_bytes[i] = (mem_pgs_arr[i]*160);
-
+        ProcessAddress = ProcessAddress + mem_pgs_arr[i] * pgs_to_bytes[i];
 
 
         std::cout <<"Process ID is: "<< processID << "\nRandom array num is: "<< mem_arr[i]
-        << "\nProccess number: "<< proc_arr[i] << "\nMemory Pages: "<< mem_pgs_arr[i]
-        << "\nPages in Bytes: "<< pgs_to_bytes[i]<<"\n--------- "<<std::endl;
+        << "\nProcess size: "<< proc_arr[i] << " MB\nMemory Pages: "<< mem_pgs_arr[i]
+        << "\nPages in Bytes: "<< pgs_to_bytes[i]<<"\nProcess Address: "<< ProcessAddress
+        <<"\n--------- "<<std::endl;
     }
 
 }
